@@ -1,0 +1,13 @@
+<h2>Mis Pedidos</h2>
+<table class="table" *ngIf="orders$ | async as orders">
+  <tr>
+    <th>Cliente</th>
+    <th>Fecha</th>
+    <th></th>
+  </tr>
+  <tr *ngFor="let o of orders">
+    <td>{{ o.shipping.name }}</td>
+    <td>{{ o.datePlaced | date:'dd/MM/yyyy'}}</td>
+    <td><a [routerLink]="['/admin/orders', o.$key]">Detalle</a></td>
+  </tr>
+</table>

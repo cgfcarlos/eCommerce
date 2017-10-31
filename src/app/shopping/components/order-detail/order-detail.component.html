@@ -1,0 +1,52 @@
+<div *ngIf="order">
+  <h2>Pedido {{ order.$key }}</h2>
+  <div class="font-weight-bold text-right">Fecha: {{ date | date:'dd/MM/yyyy' }}</div>
+  <table class="table">
+    <tr>
+      <th>Producto</th>
+      <th>Cantidad</th>
+      <th>Precio Total</th>
+    </tr>
+    <tr *ngFor="let item of order.items">
+      <td>{{ item.product.title }}</td>
+      <td>{{ item.quantity}}</td>
+      <td>{{ item.totalPrice }}</td>
+    </tr>
+  </table>
+  <p>
+    <button class="btn btn-light" type="button" (click)="isCollapsed = !isCollapsed" data-toggle="collapse" data-target="#collapseExample" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+      Detalles del pedido
+    </button>
+  </p>
+  <div class="collapse animated" [ngClass]="{'fadeIn': !isCollapsed}" id="collapseExample" [ngbCollapse]="isCollapsed">
+    <div class="card card-body">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          <span class="text-left font-weight-bold">Nombre:</span>
+          <span class="text-right">
+            {{order.shipping.name}}
+          </span>
+        </li>
+        <li class="list-group-item">
+          <span class="text-left font-weight-bold">Ciudad:</span>
+          <span class="text-right">
+            {{order.shipping.city}}
+          </span>
+        </li>
+        <li class="list-group-item">
+          <span class="text-left font-weight-bold">Dirección 1:</span>
+          <span class="text-right">
+            {{order.shipping.addressLine1}}
+          </span>
+        </li>
+        <li class="list-group-item">
+          <span class="text-left font-weight-bold">Dirección 2:</span>
+          <span class="text-right">
+            {{order.shipping.addressLine2}}
+          </span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
